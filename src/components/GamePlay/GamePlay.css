@@ -1,0 +1,49 @@
+.gameBoard {
+    width: 500px;
+    height: 500px;
+    background-color: #bbada0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto; 
+    padding: 10px;
+}
+
+/* Her bir hücre */
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;  /* Hücre genişliği */
+    height: 100px; /* Hücre yüksekliği */
+    background-color: #eee4da;
+    color: #776e65; 
+    font-weight: bold;
+    font-size: 30px;
+    border-radius: 5px; /* Köşeleri yuvarlat */
+}
+
+.row {
+    display: flex;
+}
+
+.container {
+    width: 100px;
+    height: 100px;
+    background-color: #874343;
+    
+}
+
+.animation {
+    position: relative;
+    animation-name: example;
+    animation-duration: 4s;
+}
+
+@keyframes example {
+    100%   {background-color:red; left:300px; top:300px;} 
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    /* 75%  {background-color:green; left:0px; top:200px;} */
+    /* 100% {background-color:red; left:0px; top:0px;} */
+}

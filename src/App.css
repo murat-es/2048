@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background-color: #fffcec;
+  height: 100vh;
+}
+
+.gameContainer {
+  width: 40%;
+  margin: auto;
 }
 
 .App-logo {

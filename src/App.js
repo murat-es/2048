@@ -1,10 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import GameInfo from './components/GameInfo/GameInfo';
+import GamePlay from './components/GamePlay/GamePlay';
+import React, { useState } from 'react';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App" >
+      <div className="gameContainer">
+      <GameInfo/>
+      <GamePlay/>
+      </div>
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +24,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }

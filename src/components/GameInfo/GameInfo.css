@@ -1,0 +1,53 @@
+.Info {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+}
+
+.appName {
+    flex: 1;
+    color: #776e65;
+    font-weight: bold;
+    font-size: 100px;
+}
+
+.score {
+    flex: 1;
+    display: flex;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.currentScore {
+    height: 50%;
+    width: 150px;
+    background-color: #bbada0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bestScore {
+    height: 50%;
+    width: 150px;
+    background-color: #bbada0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.scoreText {
+    color: #eee4da;
+    font-weight: bold;
+}
+
+.scorePoint {
+    font-weight: bold;
+    font-size: 20px;
+}
