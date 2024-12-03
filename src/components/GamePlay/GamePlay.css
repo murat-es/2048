@@ -9,21 +9,54 @@
     padding: 10px;
 }
 
-/* Her bir hücre */
 .grid-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;  /* Hücre genişliği */
-    height: 100px; /* Hücre yüksekliği */
-    background-color: #eee4da;
+    width: 115px;
+    height: 115px;
+    background-color: #cdc1b4;
     color: #776e65; 
     font-weight: bold;
-    font-size: 30px;
-    border-radius: 5px; /* Köşeleri yuvarlat */
+    font-size: 50px;
+    border-radius: 5px; 
+}
+
+.cell2 {
+    background-color: #eee4da;
+    color: #776e65; 
+}
+.cell4 {
+    background-color: #ede0c8;
+    color: #776e65; 
+}
+.cell8 {
+    background-color: #f2b179;
+    color: #f9f6f2;   
+}
+.cell16 {
+    background-color: #f59563;
+    color: #f9f6f2;   
+}
+.cell32 {
+    background-color: #f57e60;
+    color: #f9f6f2; 
+}
+.cell64 {
+    background-color: #f65e3b;
+    color: #f9f6f2;   
+}
+.cell128 {
+    background-color: #edcf72;
+    color: #f9f6f2;   
+}
+.cell256 {
+    background-color: #edcf72;
+    color: #f9f6f2;   
 }
 
 .row {
+    gap: 10px;
     display: flex;
 }
 
