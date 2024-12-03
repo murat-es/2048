@@ -37,7 +37,7 @@ const GamePlay = () => {
 
     const newBoard = board.map((row, rIndex) =>
       rIndex === rowIndex
-        ? row.map((cell, cIndex) => (cIndex === columnIndex ? "2" : cell))
+        ? row.map((cell, cIndex) => (cIndex === columnIndex ? 2 : cell))
         : row
     );
  
