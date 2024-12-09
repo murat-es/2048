@@ -33,7 +33,8 @@ const GamePlay = () => {
     let rowIndex = emptyCells[selectRandomTile][0];
     let columnIndex = emptyCells[selectRandomTile][1];
 
-    const newBoard = board.map((row, rIndex) =>
+    const tempBoard = [...board]
+    const newBoard = tempBoard.map((row, rIndex) =>
       rIndex === rowIndex
         ? row.map((cell, cIndex) => (cIndex === columnIndex ? 2 : cell))
         : row
@@ -109,7 +110,8 @@ const GamePlay = () => {
       }
     }
 
-    setBoard(newBoard);
+    generateRandomTiles(board);
+
   }
 
   const moveDown = (board) => {
@@ -177,8 +179,8 @@ const GamePlay = () => {
       }
     }
 
-    setBoard(newBoard);
-    // generateRandomTiles(board);
+    generateRandomTiles(board);
+
   }
 
   const moveRight = (board) => {
@@ -248,7 +250,8 @@ const GamePlay = () => {
       }
     }
 
-    setBoard(newBoard);
+    generateRandomTiles(board);
+
   }
 
 
@@ -318,7 +321,8 @@ const GamePlay = () => {
       }
     }
 
-    setBoard(newBoard);
+    generateRandomTiles(board);
+
   }
 
   // useEffect(() => {
@@ -384,14 +388,16 @@ const GamePlay = () => {
 
 
   useEffect(() => {
-    // Olay dinleyicisini ekle
     window.addEventListener("keydown", handleKeyDown);
 
-    // Temizlik yap: Dinleyiciyi kaldır
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []); 
+  }, [board]); 
+
+
+
   return (
     // <div onKeyDown={handleKeyDown} tabIndex={0} className={classes}>GamePlay</div>
     <div>
