@@ -6,10 +6,10 @@ const GamePlay = () => {
 
   const [board, setBoard] = useState(
     [
+      [2, "", "", ""],
       ["", "", "", ""],
-      ["", "", "", ""],
-      ["", "", 2, ""],
-      ["", "", "", ""],
+      ["", "", "", 4],
+      [2, "", "", 4],
     ]
   );
 
@@ -73,8 +73,10 @@ const GamePlay = () => {
             board[i][j] = "";
           }
           else {
+
             if(board[i][j] === board[previous][j]){
               multipleTile = board[i][j] * 2;
+              board[i][j] = "";
               board[previous][j] = "";
 
             }
@@ -108,7 +110,6 @@ const GamePlay = () => {
     }
 
     setBoard(newBoard);
-    // generateRandomTiles(board);
   }
 
   const moveDown = (board) => {
@@ -369,6 +370,28 @@ const GamePlay = () => {
     }
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowUp") {
+      moveUp(board)
+    } else if (event.key === "ArrowDown") {
+      moveDown(board)
+    } else if (event.key === "ArrowLeft") {
+      moveLeft(board)
+    } else if (event.key === "ArrowRight") {
+      moveRight(board)
+    }
+  };
+
+
+  useEffect(() => {
+    // Olay dinleyicisini ekle
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Temizlik yap: Dinleyiciyi kaldır
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []); 
   return (
     // <div onKeyDown={handleKeyDown} tabIndex={0} className={classes}>GamePlay</div>
     <div>
