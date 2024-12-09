@@ -3,18 +3,16 @@ import './GamePlay.css'
 
 const GamePlay = () => {
 
-  // const [animation, setAnimation] = useState(false);
 
   const [board, setBoard] = useState(
     [
-      ["", 8, 2, ""],
-      [2, "", "", ""],
-      [4, 2, "", ""],
-      [8, 2, "", ""],
+      ["", "", "", ""],
+      ["", "", "", ""],
+      ["", "", 2, ""],
+      ["", "", "", ""],
     ]
   );
 
-  console.log("board", board)
 
   const generateRandomTiles = (board) => {
 
@@ -44,6 +42,75 @@ const GamePlay = () => {
     setBoard(newBoard);
   }
 
+  const moveUp = (board) => {
+    const newBoard = [...board];
+
+    const boardLength = board.length;
+
+    for (let i = 0; i < boardLength; i++) {
+      for (let j = boardLength -1 ; j >= 0; j--) {
+
+        // eğer hücre boşsa hiçbir şey yapma
+        if(board[i][j] === ""){ 
+          continue;
+        }
+
+
+        let multipleTile = 0;
+        if (i === boardLength - 1) { // boardın ilk hücresi ise kendi değerini al
+          multipleTile = board[i][j];
+          board[i][j] = "";
+        }
+        else { // eğer gerisindeki hücre(ler)de bir değer varsa ikisinin çarpımını al
+          
+          let previous = i + 1;
+          while (previous < boardLength - 1 && board[previous][j] === "") {
+            previous++;
+          }
+
+          if(board[previous][j] === "") {
+            multipleTile = board[i][j];
+            board[i][j] = "";
+          }
+          else {
+            if(board[i][j] === board[previous][j]){
+              multipleTile = board[i][j] * 2;
+              board[previous][j] = "";
+
+            }
+            else{ 
+              multipleTile = board[i][j];
+              board[i][j] = "";
+            }
+          }
+
+        }
+
+
+
+
+        if(i === 0){
+            board[i][j] = multipleTile;
+        }
+        else {
+          // önünde dolu hücre bulana kadar ilerle
+          let next=i;
+          while (next > 0 && board[next - 1][j] === "") {
+            next--;
+            
+          }
+          
+          board[next][j] = multipleTile;
+        }
+
+        
+      }
+    }
+
+    setBoard(newBoard);
+    // generateRandomTiles(board);
+  }
+
   const moveDown = (board) => {
     const newBoard = [...board];
 
@@ -52,13 +119,10 @@ const GamePlay = () => {
     for (let i =  boardLength- 1; i>=0; i--) {
       for (let j = boardLength -1 ; j >= 0; j--) {
 
-        // her hücre boşsa hiçbir şey yapma
+        // eğer hücre boşsa hiçbir şey yapma
         if(board[i][j] === ""){ 
-        console.log("ilk -->  i: ", i, "  j:", j, " -> " )
-
           continue;
         }
-        const a = board[i][j];
 
 
         let multipleTile = 0;
@@ -89,18 +153,13 @@ const GamePlay = () => {
             }
           }
 
-          // eski hücreleri sıfırla
-          // board[i][j] = "";
-          // board[previous][j] = "";
         }
 
-        console.log("normal -->  i: ", i, "  j:", j, " -> " , multipleTile )
 
 
 
         if(i === boardLength - 1){
-          console.log("buraya girdi  mi: ", i, "  j:", j, " -> " , multipleTile )
-          board[i][j] = multipleTile;
+            board[i][j] = multipleTile;
         }
         else {
           // önünde dolu hücre bulana kadar ilerle
@@ -109,8 +168,6 @@ const GamePlay = () => {
             next++;
             
           }
-          console.log("next -->  i: ", next, "  j:", j, " -> " , multipleTile )
-
           
           board[next][j] = multipleTile;
         }
@@ -120,81 +177,142 @@ const GamePlay = () => {
     }
 
     setBoard(newBoard);
+    // generateRandomTiles(board);
   }
-
 
   const moveRight = (board) => {
     const newBoard = [...board];
 
     const boardLength = board.length;
 
-    for (let i = 0; i >= 0; i--) {
-      for (let j = boardLength -1 ; j >= 0; j--) {
+    for (let i = 0; i < boardLength; i++) {
+      for (let j = boardLength - 1 ; j >= 0; j--) {
 
-        if(board[i][j] === ""){
+        // eğer hücre boşsa hiçbir şey yapma
+        if(board[i][j] === ""){ 
+          continue;
+        }
+        
+
+
+        let multipleTile = 0;
+        if (j === 0) { // boardın son hücresi ise kendi değerini al
+          multipleTile = board[i][j];
+          board[i][j] = "";
+        }
+
+        else { // eğer gerisindeki hücre(ler)de bir değer varsa ikisinin çarpımını al
+          
+          let previous = j - 1;
+          while (previous > 0 && board[i][previous] === "") {
+            previous--;
+          }
+
+          if(board[i][previous] === "") { // dolu hücre bulamamışsa kendisini ata
+            multipleTile = board[i][j];
+            board[i][j] = "";
+          }
+          else { // dolu hücre varsa çarpımını al
+
+            if(board[i][j] === board[i][previous]){
+              multipleTile = board[i][j] * 2;
+              board[i][previous] = "";
+              board[i][j] = "";
+            }
+            else{ 
+              multipleTile = board[i][j];
+              board[i][j] = "";
+            }
+          }
+
+        }
+
+
+
+
+        if(j === boardLength - 1){ // eğer hareket yönündeki ilk hücre ise
+            board[i][j] = multipleTile;
+        }
+        else {
+          // önünde dolu hücre bulana kadar ilerle
+          let next=j;
+          while (next < boardLength - 1 && board[i][next+1] === "") {
+            next++;
+            
+          }
+          
+          board[i][next] = multipleTile;
+        }
+
+      }
+    }
+
+    setBoard(newBoard);
+  }
+
+
+  const moveLeft = (board) => {
+    const newBoard = [...board];
+
+    const boardLength = board.length;
+
+    for (let i = 0; i < boardLength; i++) {
+      for (let j = 0 ; j < boardLength; j++) {
+
+        // eğer hücre boşsa hiçbir şey yapma
+        if(board[i][j] === ""){ 
           continue;
         }
 
-        console.log("j", j)
-        console.log("şu anki i,j değeri", newBoard[i][j])
-       
 
-        let tempJ = j;
-        while (tempJ >= 0) {
-          tempJ--;
-
-
-
-          if(tempJ < 0) {
-
-            let forwardJ = j+1;
-            while (forwardJ < boardLength - 1 && newBoard[i][forwardJ] == "") {
-              forwardJ++;
-            }
-            console.log("aaaaaaaaaaaaaaaaaaaaa", newBoard[i][forwardJ], " --- ", forwardJ)
-            newBoard[i][forwardJ] = newBoard[i][j];
-            newBoard[i][j] = "" 
-            
-            break;
-          }
-
-          if (board[i][tempJ] === "") continue;
-          
-
-          let multipleTile = board[i][tempJ] * board[i][j];
-          // console.log("j", j , " - board",boardLength)
-
-
-          if (j + 1 === boardLength) {
-            newBoard[i][j] = multipleTile;
-            newBoard[i][tempJ] = "";
-            console.log("a")
-
-          }
-          else {
-            console.log("b")
-
-            let forwardJ = j+1;
-            while (forwardJ < boardLength - 1 && newBoard[i][forwardJ] == "") {
-                forwardJ++;
-            }
-            newBoard[i][forwardJ] = multipleTile;
-            newBoard[i][j] = "";
-            newBoard[i][tempJ] = "";
-          }
-          
-          break;
+        let multipleTile = 0;
+        if (j === boardLength - 1) { // boardın son hücresi ise kendi değerini al
+          multipleTile = board[i][j];
+          board[i][j] = "";
         }
 
-        // console.log("b ", i , "", j)
-        // console.log("b ", board[i][j], " 1")
+        else { // eğer gerisindeki hücre(ler)de bir değer varsa ikisinin çarpımını al
+          
+          let previous = j + 1;
+          while (previous < boardLength && board[i][previous] === "") {
+            previous++;
+          }
 
-        // let temJForward = j;
-        // while (board[i][tempJ] == "")
-        // {
-        //   temJForward++;
-        // }
-        // board[i][temJForward] = board[i][j];
+          if(board[i][previous] === "") { // dolu hücre bulamamışsa kendisini ata
+            multipleTile = board[i][j];
+            board[i][j] = "";
+          }
+          else { // dolu hücre varsa çarpımını al
+
+            if(board[i][j] === board[i][previous]){
+              multipleTile = board[i][j] * 2;
+              board[i][previous] = "";
+              board[i][j] = "";
+            }
+            else{ 
+              multipleTile = board[i][j];
+              board[i][j] = "";
+            }
+          }
+
+        }
+
+
+
+
+        if(j === 0){
+            board[i][j] = multipleTile;
+        }
+        else {
+          // önünde dolu hücre bulana kadar ilerle
+          let next=j;
+          while (next > 0 && board[i][next-1] === "") {
+            next--;
+            
+          }
+          
+          board[i][next] = multipleTile;
+        }
 
       }
     }
@@ -272,7 +390,9 @@ const GamePlay = () => {
       }
     )}
     </div>
+      <button onClick={()=>{moveLeft(board)}}>moveLeft</button>
       <button onClick={()=>{moveRight(board)}}>moveRight</button>
+      <button onClick={()=>{moveUp(board)}}>moveUp</button>
       <button onClick={()=>{moveDown(board)}}>moveDown</button>
     </div>
   )
