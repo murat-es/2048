@@ -1,7 +1,16 @@
 import React from 'react'
 import './GameInfo.css';
 
-const GameInfo = () => {
+const GameInfo = ({generateRandomTiles}) => {
+
+    const newGame = () => {
+        const emptyCells = Array(4).fill("").map(() => Array(4).fill("")); 
+        
+        const constRandomCellCount = 2;
+        generateRandomTiles(emptyCells, constRandomCellCount)
+    }
+    
+
     return (
         <div>
             <div className="Info">
@@ -17,12 +26,16 @@ const GameInfo = () => {
                     </div>
                     <div className='bestScore'>
                         <div className='scoreText'>
-                            Best
+                            BEST
                         </div>
                         <div className='scorePoint'>
                             0
                         </div>
                     </div>
+                  
+                </div>
+                <div className='newGame' onClick={newGame}>
+                    New Game
                 </div>
             </div>
         </div>

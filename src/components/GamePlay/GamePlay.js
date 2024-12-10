@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import './GamePlay.css'
 
-const GamePlay = () => {
+const GamePlay = ({board, setBoard}) => {
 
 
-  const [board, setBoard] = useState(
-    [
-      [2, "", "", ""],
-      ["", "", "", ""],
-      ["", "", "", 4],
-      [2, "", "", 4],
-    ]
-  );
+  // const [board, setBoard] = useState(
+  //   [
+  //     [2, "", "", ""],
+  //     ["", "", "", ""],
+  //     ["", "", "", 4],
+  //     [2, "", "", 4],
+  //   ]
+  // );
 
 
   const generateRandomTiles = (board) => {

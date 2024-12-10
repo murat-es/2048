@@ -1,14 +1,33 @@
 .Info {
     display: flex;
     flex-direction: row;
-    padding-top: 1rem;
+    gap: 1rem;
+    height: 20vh;
+    align-items: center;
 }
 
 .appName {
     flex: 1;
     color: #776e65;
     font-weight: bold;
-    font-size: 100px;
+    font-size: 60px;
+    justify-content: center;
+    align-content: center;
+}
+
+.newGame {
+    flex: 1;
+    color: white;
+    background-color: #8f7a66;
+    justify-content: center;
+    align-content: center;
+    border-radius: 5px;
+    font-weight: bold;
+    height: 40%;
+}
+
+.newGame:hover {
+    cursor: pointer;
 }
 
 .score {
@@ -24,7 +43,7 @@
 
 .currentScore {
     height: 50%;
-    width: 150px;
+    width: 100px;
     background-color: #bbada0;
     border-radius: 5px;
     display: flex;
@@ -34,7 +53,7 @@
 
 .bestScore {
     height: 50%;
-    width: 150px;
+    width: 100px;
     background-color: #bbada0;
     border-radius: 5px;
     display: flex;
