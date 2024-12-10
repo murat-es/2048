@@ -1,50 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './GamePlay.css'
 
-const GamePlay = ({board, setBoard}) => {
+const GamePlay = ({board, generateRandomTiles}) => {
 
-
-  // const [board, setBoard] = useState(
-  //   [
-  //     [2, "", "", ""],
-  //     ["", "", "", ""],
-  //     ["", "", "", 4],
-  //     [2, "", "", 4],
-  //   ]
-  // );
-
-
-  const generateRandomTiles = (board) => {
-
-    const emptyCells = [];
-
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < board.length; j++) {
-        if (board[i][j] === "") {
-          emptyCells.push([i, j])
-        }
-      }
-    }
-
-    if(emptyCells.length === 0) return;
-
-
-    let selectRandomTile = Math.floor(Math.random() * emptyCells.length);
-    let rowIndex = emptyCells[selectRandomTile][0];
-    let columnIndex = emptyCells[selectRandomTile][1];
-
-    const tempBoard = [...board]
-    const newBoard = tempBoard.map((row, rIndex) =>
-      rIndex === rowIndex
-        ? row.map((cell, cIndex) => (cIndex === columnIndex ? 2 : cell))
-        : row
-    );
- 
-    setBoard(newBoard);
-  }
+  const randomCellCountOnEveryMove = 1;
 
   const moveUp = (board) => {
-    const newBoard = [...board];
 
     const boardLength = board.length;
 
@@ -110,12 +71,11 @@ const GamePlay = ({board, setBoard}) => {
       }
     }
 
-    generateRandomTiles(board);
+    generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
 
   const moveDown = (board) => {
-    const newBoard = [...board];
 
     const boardLength = board.length;
 
@@ -179,12 +139,11 @@ const GamePlay = ({board, setBoard}) => {
       }
     }
 
-    generateRandomTiles(board);
+    generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
 
   const moveRight = (board) => {
-    const newBoard = [...board];
 
     const boardLength = board.length;
 
@@ -250,7 +209,7 @@ const GamePlay = ({board, setBoard}) => {
       }
     }
 
-    generateRandomTiles(board);
+    generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
 
@@ -321,27 +280,10 @@ const GamePlay = ({board, setBoard}) => {
       }
     }
 
-    generateRandomTiles(board);
+    generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
 
-  // useEffect(() => {
-  //   generateRandomTiles(board);
-  // }, [])
-
-
-
-  // const handleKeyDown = (event) => {
-  //   console.log("aa", event.key)
-  //   if (event.key === 'ArrowRight') {
-  //     setAnimation(true);
-  //   }
-  // }
-
-  // const anim = animation ? "animation" : "";
-  // const classes = `container ${anim}`
-
-  // const number = Array.from({ length: 16 }, (_, i) => i + 1); // 1'den 16'ya kadar numaralar
 
   const handleCellColor = (number) => {
     let classes = "grid-item"
@@ -399,10 +341,9 @@ const GamePlay = ({board, setBoard}) => {
 
 
   return (
-    // <div onKeyDown={handleKeyDown} tabIndex={0} className={classes}>GamePlay</div>
     <div>
 
-    <div className='gameBoard' onClick={() => { generateRandomTiles(board) }}>
+    <div className='gameBoard'>
       {board.map((number, i) => {
         
         return (
