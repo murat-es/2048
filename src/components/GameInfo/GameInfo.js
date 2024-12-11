@@ -1,18 +1,18 @@
 import React from 'react'
 import './GameInfo.css';
 
-const GameInfo = ({score, setScore, bestScore, generateRandomTiles}) => {
+const GameInfo = ({ score, setScore, bestScore, generateRandomTiles }) => {
 
     const newGame = () => {
-        const emptyCells = Array(4).fill("").map(() => Array(4).fill("")); 
-        
+        const emptyCells = Array(4).fill("").map(() => Array(4).fill(""));
+
         const constRandomCellCount = 2;
         generateRandomTiles(emptyCells, constRandomCellCount)
 
         setScore(0);
         localStorage.setItem("bestScore", bestScore);
     }
-    
+
 
     return (
         <div>
@@ -35,7 +35,7 @@ const GameInfo = ({score, setScore, bestScore, generateRandomTiles}) => {
                             {bestScore}
                         </div>
                     </div>
-                  
+
                 </div>
                 <div className='newGame' onClick={newGame}>
                     New Game

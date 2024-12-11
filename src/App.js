@@ -15,7 +15,22 @@ function App() {
       ["", "", "", ""],
     ]
   );
-  
+
+  useEffect(() => {
+
+    let bestScoreStorage = localStorage.getItem("bestScore");
+    console.log("high", bestScoreStorage)
+
+    if (!bestScoreStorage) {
+      localStorage.setItem("bestScore", bestScore.toString());
+    }
+    else {
+      setBestScore(parseInt(bestScoreStorage))
+    }
+
+    const randomCountAtTheBeginning = 2;
+    generateRandomTiles(board, randomCountAtTheBeginning);
+  }, [])
 
   const generateRandomTiles = (board, randomCount) => {
 
@@ -29,47 +44,33 @@ function App() {
       }
     }
 
-    if(emptyCells.length === 0) return;
+    if (emptyCells.length === 0) return;
 
-    let newBoard=[...board]
+    let newBoard = [...board]
     for (let index = 0; index < randomCount; index++) {
-      
-      
+
+
       let selectRandomTile = Math.floor(Math.random() * emptyCells.length);
       let rowIndex = emptyCells[selectRandomTile][0];
       let columnIndex = emptyCells[selectRandomTile][1];
-      
+
       newBoard = newBoard.map((row, rIndex) =>
         rIndex === rowIndex
-      ? row.map((cell, cIndex) => (cIndex === columnIndex ? 2 : cell))
-      : row
-    );
-    
-  }
+          ? row.map((cell, cIndex) => (cIndex === columnIndex ? 2 : cell))
+          : row
+      );
+
+    }
     setBoard(newBoard);
   }
 
-  useEffect(()=>{
-    
-    let bestScoreStorage = localStorage.getItem("bestScore");
-    console.log("high", bestScoreStorage)
 
-    if(!bestScoreStorage){
-      localStorage.setItem("bestScore", bestScore.toString());
-    }
-    else{
-      setBestScore(parseInt(bestScoreStorage))
-    }
-
-    const randomCountAtTheBeginning = 2;
-    generateRandomTiles(board, randomCountAtTheBeginning);
-  }, [])
 
   return (
     <div className="App" >
       <div className="gameContainer">
-      <GameInfo score={score} setScore={setScore} bestScore={bestScore} generateRandomTiles={generateRandomTiles}/>
-      <GamePlay board={board} score={score} setScore={setScore} bestScore={bestScore} setBestScore={setBestScore} generateRandomTiles={generateRandomTiles}/>
+        <GameInfo score={score} setScore={setScore} bestScore={bestScore} generateRandomTiles={generateRandomTiles} />
+        <GamePlay board={board} score={score} setScore={setScore} bestScore={bestScore} setBestScore={setBestScore} generateRandomTiles={generateRandomTiles} />
       </div>
     </div>
   );
