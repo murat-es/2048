@@ -1,13 +1,21 @@
 import React, { useEffect } from 'react'
 import './GamePlay.css'
 
-const GamePlay = ({board, generateRandomTiles}) => {
+const GamePlay = ({board, score, setScore, bestScore, setBestScore, generateRandomTiles}) => {
 
   const randomCellCountOnEveryMove = 1;
+
+  useEffect(()=>{
+    if(score >= bestScore){
+      setBestScore(score);
+    }
+
+  }, [score])
 
   const moveUp = (board) => {
 
     const boardLength = board.length;
+    let moveScore = 0; 
 
     for (let i = 0; i < boardLength; i++) {
       for (let j = boardLength -1 ; j >= 0; j--) {
@@ -38,6 +46,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
 
             if(board[i][j] === board[previous][j]){
               multipleTile = board[i][j] * 2;
+              moveScore += multipleTile;
               board[i][j] = "";
               board[previous][j] = "";
 
@@ -70,7 +79,8 @@ const GamePlay = ({board, generateRandomTiles}) => {
         
       }
     }
-
+    
+    setScore((prevScore) => prevScore + moveScore)
     generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
@@ -78,6 +88,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
   const moveDown = (board) => {
 
     const boardLength = board.length;
+    let moveScore = 0; 
 
     for (let i =  boardLength- 1; i>=0; i--) {
       for (let j = boardLength -1 ; j >= 0; j--) {
@@ -107,6 +118,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
           else {
             if(board[i][j] === board[previous][j]){
               multipleTile = board[i][j] * 2;
+              moveScore += multipleTile;
               board[previous][j] = "";
 
             }
@@ -139,12 +151,14 @@ const GamePlay = ({board, generateRandomTiles}) => {
       }
     }
 
+    setScore((prevScore) => prevScore + moveScore)
     generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
 
   const moveRight = (board) => {
 
+    let moveScore = 0; 
     const boardLength = board.length;
 
     for (let i = 0; i < boardLength; i++) {
@@ -178,6 +192,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
 
             if(board[i][j] === board[i][previous]){
               multipleTile = board[i][j] * 2;
+              moveScore += multipleTile;
               board[i][previous] = "";
               board[i][j] = "";
             }
@@ -209,6 +224,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
       }
     }
 
+    setScore((prevScore) => prevScore + moveScore)
     generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
@@ -218,6 +234,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
     const newBoard = [...board];
 
     const boardLength = board.length;
+    let moveScore = 0; 
 
     for (let i = 0; i < boardLength; i++) {
       for (let j = 0 ; j < boardLength; j++) {
@@ -249,6 +266,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
 
             if(board[i][j] === board[i][previous]){
               multipleTile = board[i][j] * 2;
+              moveScore += multipleTile;
               board[i][previous] = "";
               board[i][j] = "";
             }
@@ -280,6 +298,7 @@ const GamePlay = ({board, generateRandomTiles}) => {
       }
     }
 
+    setScore((prevScore) => prevScore + moveScore)
     generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }

@@ -4,6 +4,9 @@ import GamePlay from './components/GamePlay/GamePlay';
 import React, { useEffect, useState } from 'react';
 
 function App() {
+
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
   const [board, setBoard] = useState(
     [
       ["", "", "", ""],
@@ -12,6 +15,7 @@ function App() {
       ["", "", "", ""],
     ]
   );
+  
 
   const generateRandomTiles = (board, randomCount) => {
 
@@ -46,6 +50,17 @@ function App() {
   }
 
   useEffect(()=>{
+    
+    let bestScoreStorage = localStorage.getItem("bestScore");
+    console.log("high", bestScoreStorage)
+
+    if(!bestScoreStorage){
+      localStorage.setItem("bestScore", bestScore.toString());
+    }
+    else{
+      setBestScore(parseInt(bestScoreStorage))
+    }
+
     const randomCountAtTheBeginning = 2;
     generateRandomTiles(board, randomCountAtTheBeginning);
   }, [])
@@ -53,8 +68,8 @@ function App() {
   return (
     <div className="App" >
       <div className="gameContainer">
-      <GameInfo generateRandomTiles={generateRandomTiles}/>
-      <GamePlay board={board} generateRandomTiles={generateRandomTiles}/>
+      <GameInfo score={score} setScore={setScore} bestScore={bestScore} generateRandomTiles={generateRandomTiles}/>
+      <GamePlay board={board} score={score} setScore={setScore} bestScore={bestScore} setBestScore={setBestScore} generateRandomTiles={generateRandomTiles}/>
       </div>
     </div>
   );
