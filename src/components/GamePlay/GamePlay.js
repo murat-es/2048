@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './GamePlay.css'
 
-const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRandomTiles }) => {
+const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRandomTiles, isGameOver }) => {
 
   const randomCellCountOnEveryMove = 1;
 
@@ -362,7 +362,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   return (
     <div>
 
-      <div className='gameBoard'>
+      <div className='gameBoard gameOver'>
         {board.map((number, i) => {
 
           return (
@@ -378,6 +378,11 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           )
         }
         )}
+         {isGameOver && (
+        <div className="game-over-overlay">
+          Game Over
+        </div>
+      )}
       </div>
       <button onClick={() => { moveLeft(board) }}>moveLeft</button>
       <button onClick={() => { moveRight(board) }}>moveRight</button>

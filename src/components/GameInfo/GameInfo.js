@@ -1,7 +1,7 @@
 import React from 'react'
 import './GameInfo.css';
 
-const GameInfo = ({ score, setScore, bestScore, generateRandomTiles }) => {
+const GameInfo = ({ score, setScore, bestScore, generateRandomTiles, setIsGameOver }) => {
 
     const newGame = () => {
         const emptyCells = Array(4).fill("").map(() => Array(4).fill(""));
@@ -11,6 +11,7 @@ const GameInfo = ({ score, setScore, bestScore, generateRandomTiles }) => {
 
         setScore(0);
         localStorage.setItem("bestScore", bestScore);
+        setIsGameOver(false);
     }
 
 
