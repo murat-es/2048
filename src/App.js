@@ -8,6 +8,7 @@ function App() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [newCellIndexList, setNewCellIndexList] = useState([{}]);
   const [board, setBoard] = useState(
     [
       ["", "", "", ""],
@@ -53,12 +54,16 @@ function App() {
     if (emptyCells.length === 0) return;
 
     let newBoard = [...board]
+    let newCellIndexList = []
     for (let index = 0; index < randomCount; index++) {
 
 
       let selectRandomTile = Math.floor(Math.random() * emptyCells.length);
       let rowIndex = emptyCells[selectRandomTile][0];
       let columnIndex = emptyCells[selectRandomTile][1];
+
+      let cellIndex = {i: rowIndex, j: columnIndex}
+      newCellIndexList.push(cellIndex);
 
       newBoard = newBoard.map((row, rIndex) =>
         rIndex === rowIndex
@@ -67,6 +72,8 @@ function App() {
       );
 
     }
+
+    setNewCellIndexList(newCellIndexList);
     setBoard(newBoard);
   }
 
@@ -91,7 +98,7 @@ function App() {
       <div className="gameContainer">
         <GameInfo score={score} setScore={setScore} bestScore={bestScore} generateRandomTiles={generateRandomTiles} setIsGameOver={setIsGameOver}/>
         <GamePlay board={board} score={score} setScore={setScore} bestScore={bestScore} setBestScore={setBestScore} 
-                  generateRandomTiles={generateRandomTiles} isGameOver={isGameOver} />
+                  generateRandomTiles={generateRandomTiles} isGameOver={isGameOver} newCellIndexList={newCellIndexList} />
       </div>
     </div>
   );

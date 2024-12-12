@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './GamePlay.css'
 
-const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRandomTiles, isGameOver }) => {
+const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRandomTiles, isGameOver, newCellIndexList }) => {
 
   const randomCellCountOnEveryMove = 1;
 
@@ -304,8 +304,16 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   }
 
 
-  const handleCellColor = (number) => {
+  const handleCellClass = (number, rowIndex, columnIndex) => {
     let classes = "grid-item"
+
+    for (let newCell = 0; newCell < newCellIndexList.length; newCell++) {
+
+      if(newCellIndexList[newCell].i === rowIndex && newCellIndexList[newCell].j === columnIndex) {
+        classes += " newCell"
+      }
+    }
+    
     if (number === 2) {
       return classes + " cell2"
     }
@@ -363,13 +371,13 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
     <div>
 
       <div className='gameBoard gameOver'>
-        {board.map((number, i) => {
+        {board.map((number, row) => {
 
           return (
-            <div key={i} className='row'>
+            <div key={row} className='row'>
               {
-                number.map((item, index) => (
-                  <div key={index} className={handleCellColor(item)}>
+                number.map((item, column) => (
+                  <div key={column} className={handleCellClass(item, row, column)}>
                     {item}
                   </div>
                 ))
