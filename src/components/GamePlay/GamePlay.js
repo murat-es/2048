@@ -13,7 +13,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   }, [score])
 
   const moveUp = (board) => {
-
+  
     const boardLength = board.length;
     let moveScore = 0;
 
@@ -86,7 +86,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   }
 
   const moveDown = (board) => {
-
+  
     const boardLength = board.length;
     let moveScore = 0;
 
@@ -157,7 +157,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   }
 
   const moveRight = (board) => {
-
+  
     let moveScore = 0;
     const boardLength = board.length;
 
@@ -344,6 +344,8 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   }
 
   const handleKeyDown = (event) => {
+    if(isGameOver) return
+
     if (event.key === "ArrowUp") {
       moveUp(board)
     } else if (event.key === "ArrowDown") {
@@ -363,7 +365,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [board]);
+  }, [board, isGameOver]);
 
 
 
