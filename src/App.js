@@ -6,36 +6,51 @@ import React, { useEffect, useState } from 'react';
 function App() {
 
   const [isGameOver, setIsGameOver] = useState(false);
-  const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
   const [newCellIndexList, setNewCellIndexList] = useState([{}]);
-  const [board, setBoard] = useState(
-    [
+  
+  const getInitialBoard = () => {
+    const storedBoard = localStorage.getItem("board");
+    return storedBoard
+    ? JSON.parse(storedBoard)
+    : [
       ["", "", "", ""],
       ["", "", "", ""],
       ["", "", "", ""],
       ["", "", "", ""],
-    ]
-  );
-
+    ]; 
+  };
+  
+  const getCurrentScore = () => {
+    const currentScoreStorage = localStorage.getItem("currentScore");
+    return currentScoreStorage
+    ? parseInt(currentScoreStorage): 0; 
+  };
+  
+  const getBestScore = () => {
+    const bestScoreStorage = localStorage.getItem("bestScore");
+    return bestScoreStorage
+    ? parseInt(bestScoreStorage): 0; 
+  };
+  
+  const [board, setBoard] = useState(getInitialBoard);
+  const [bestScore, setBestScore] = useState(getBestScore);
+  const [score, setScore] = useState(getCurrentScore);
+  
   useEffect(() => {
 
-    let bestScoreStorage = localStorage.getItem("bestScore");
-
-    if (!bestScoreStorage) {
-      localStorage.setItem("bestScore", bestScore.toString());
+    const boardStorage = localStorage.getItem("board");
+    if(!boardStorage) {
+      const randomCountAtTheBeginning = 2;
+      generateRandomTiles(board, randomCountAtTheBeginning);
     }
-    else {
-      setBestScore(parseInt(bestScoreStorage))
-    }
-
-    const randomCountAtTheBeginning = 2;
-    generateRandomTiles(board, randomCountAtTheBeginning);
   }, [])
 
   useEffect(() => {
     let isGameOver = checkIsGameOver(board);
     if(isGameOver) setIsGameOver(isGameOver);
+
+    localStorage.setItem("board", JSON.stringify(board));
+
 
   }, [board])
 

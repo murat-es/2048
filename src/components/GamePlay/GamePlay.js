@@ -8,7 +8,12 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   useEffect(() => {
     if (score >= bestScore) {
       setBestScore(score);
+      localStorage.setItem("bestScore", score.toString());
     }
+
+
+    localStorage.setItem("currentScore", score.toString());
+    
 
   }, [score])
 

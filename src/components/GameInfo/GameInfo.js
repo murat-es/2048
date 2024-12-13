@@ -11,6 +11,8 @@ const GameInfo = ({ score, setScore, bestScore, generateRandomTiles, setIsGameOv
 
         setScore(0);
         localStorage.setItem("bestScore", bestScore);
+        localStorage.setItem("currentScore", "0");
+        localStorage.removeItem("board");
         setIsGameOver(false);
     }
 
