@@ -67,15 +67,21 @@ function App() {
     }
 
     if (emptyCells.length === 0) return;
-
+    
     let newBoard = [...board]
     let newCellIndexList = []
+    let generatedIndex = new Set();
     for (let index = 0; index < randomCount; index++) {
 
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * emptyCells.length);
+      } while (generatedIndex.has(randomIndex));
+    
+      generatedIndex.add(randomIndex);
 
-      let selectRandomTile = Math.floor(Math.random() * emptyCells.length);
-      let rowIndex = emptyCells[selectRandomTile][0];
-      let columnIndex = emptyCells[selectRandomTile][1];
+      let rowIndex = emptyCells[randomIndex][0];
+      let columnIndex = emptyCells[randomIndex][1];
 
       let cellIndex = {i: rowIndex, j: columnIndex}
       newCellIndexList.push(cellIndex);
