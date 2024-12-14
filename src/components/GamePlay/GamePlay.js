@@ -21,6 +21,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   
     const boardLength = board.length;
     let moveScore = 0;
+    let didBoardMove = false;
 
     for (let i = 0; i < boardLength; i++) {
       for (let j = boardLength - 1; j >= 0; j--) {
@@ -55,6 +56,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
               board[i][j] = "";
               board[previous][j] = "";
 
+              didBoardMove = true;
             }
             else {
               multipleTile = board[i][j];
@@ -63,7 +65,6 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           }
 
         }
-
 
 
 
@@ -79,6 +80,8 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           }
 
           board[next][j] = multipleTile;
+
+          if(next !== i) didBoardMove = true;
         }
 
 
@@ -86,7 +89,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
     }
 
     setScore((prevScore) => prevScore + moveScore)
-    generateRandomTiles(board, randomCellCountOnEveryMove);
+    didBoardMove && generateRandomTiles(board, randomCellCountOnEveryMove);
 
   }
 
@@ -94,6 +97,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   
     const boardLength = board.length;
     let moveScore = 0;
+    let didBoardMove = false;
 
     for (let i = boardLength - 1; i >= 0; i--) {
       for (let j = boardLength - 1; j >= 0; j--) {
@@ -126,6 +130,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
               moveScore += multipleTile;
               board[previous][j] = "";
 
+              didBoardMove = true;
             }
             else {
               multipleTile = board[i][j];
@@ -150,6 +155,9 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           }
 
           board[next][j] = multipleTile;
+          
+          if(next !== i) didBoardMove = true;
+
         }
 
 
@@ -157,14 +165,14 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
     }
 
     setScore((prevScore) => prevScore + moveScore)
-    generateRandomTiles(board, randomCellCountOnEveryMove);
-
+    didBoardMove && generateRandomTiles(board, randomCellCountOnEveryMove);
   }
 
   const moveRight = (board) => {
   
     let moveScore = 0;
     const boardLength = board.length;
+    let didBoardMove = false;
 
     for (let i = 0; i < boardLength; i++) {
       for (let j = boardLength - 1; j >= 0; j--) {
@@ -200,6 +208,8 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
               moveScore += multipleTile;
               board[i][previous] = "";
               board[i][j] = "";
+
+              didBoardMove = true;
             }
             else {
               multipleTile = board[i][j];
@@ -216,6 +226,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           board[i][j] = multipleTile;
         }
         else {
+
           // önünde dolu hücre bulana kadar ilerle
           let next = j;
           while (next < boardLength - 1 && board[i][next + 1] === "") {
@@ -224,14 +235,17 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           }
 
           board[i][next] = multipleTile;
+
+
+          if(next !== j) didBoardMove = true;
+
         }
 
       }
     }
 
     setScore((prevScore) => prevScore + moveScore)
-    generateRandomTiles(board, randomCellCountOnEveryMove);
-
+    didBoardMove && generateRandomTiles(board, randomCellCountOnEveryMove);
   }
 
 
@@ -240,6 +254,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
 
     const boardLength = board.length;
     let moveScore = 0;
+    let didBoardMove = false;
 
     for (let i = 0; i < boardLength; i++) {
       for (let j = 0; j < boardLength; j++) {
@@ -274,6 +289,9 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
               moveScore += multipleTile;
               board[i][previous] = "";
               board[i][j] = "";
+
+              didBoardMove = true;
+
             }
             else {
               multipleTile = board[i][j];
@@ -298,14 +316,15 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           }
 
           board[i][next] = multipleTile;
+
+          if(next !== j) didBoardMove = true;
         }
 
       }
     }
 
     setScore((prevScore) => prevScore + moveScore)
-    generateRandomTiles(board, randomCellCountOnEveryMove);
-
+    didBoardMove && generateRandomTiles(board, randomCellCountOnEveryMove);
   }
 
 
