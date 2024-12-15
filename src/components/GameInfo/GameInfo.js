@@ -18,10 +18,9 @@ const GameInfo = ({ score, setScore, bestScore, generateRandomTiles, setIsGameOv
 
 
     return (
-        <div>
             <div className="Info">
-                <div className="appName">2048</div>
-                <div className="score">
+                    <div className="appName">2048</div>
+
                     <div className='currentScore'>
                         <div className='scoreText'>
                             SCORE
@@ -38,13 +37,10 @@ const GameInfo = ({ score, setScore, bestScore, generateRandomTiles, setIsGameOv
                             {bestScore}
                         </div>
                     </div>
-
-                </div>
-                <div className='newGame' onClick={newGame}>
-                    New Game
-                </div>
+                    <div className='newGame' onClick={newGame}>
+                        New Game
+                    </div>
             </div>
-        </div>
     )
 }
 

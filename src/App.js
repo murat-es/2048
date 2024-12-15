@@ -35,7 +35,7 @@ function App() {
   const [board, setBoard] = useState(getInitialBoard);
   const [bestScore, setBestScore] = useState(getBestScore);
   const [score, setScore] = useState(getCurrentScore);
-  
+
   useEffect(() => {
 
     const boardStorage = localStorage.getItem("board");

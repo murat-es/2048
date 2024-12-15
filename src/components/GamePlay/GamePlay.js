@@ -338,6 +338,9 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
       }
     }
     
+    if (number === "") {
+      return classes;
+    }
     if (number === 2) {
       return classes + " cell2"
     }
@@ -363,7 +366,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
       return classes + " cell256"
     }
     else {
-      return classes
+      return classes + " cell512"
     }
   }
 

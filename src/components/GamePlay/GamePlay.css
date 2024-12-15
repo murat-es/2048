@@ -19,14 +19,28 @@
     position: relative;
     width: 500px;
     height: 500px;
-    background-color: #bbada0;
+    background-color: #887d73;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin: 0 auto;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
+
+@media (max-width: 768px) {
+    .gameBoard {
+        width: 45vw;
+        height: 45vw;
+        gap: 1vw;
+    }
+    .grid-item {
+        width: 10vw !important;
+        height: 10vw !important;
+        font-size: 7vw !important;
+    }
+}
+
 
 .grid-item {
     display: flex;
@@ -37,8 +51,8 @@
     background-color: #cdc1b4;
     color: #776e65;
     font-weight: bold;
-    font-size: 50px;
-    border-radius: 5px;
+    font-size: 55px;
+    border-radius: 10px;
 }
 
 @keyframes tile-grow {
@@ -96,6 +110,11 @@
 
 .cell256 {
     background-color: #edcf72;
+    color: #f9f6f2;
+}
+
+.cell512 {
+    background-color: #edc850;
     color: #f9f6f2;
 }
 

@@ -3,14 +3,20 @@
     flex-direction: row;
     gap: 1rem;
     height: 20vh;
+    width: 500px;
+    margin: 0 auto;
     align-items: center;
 }
 
 .appName {
     flex: 1;
-    color: #776e65;
+    color: white;
+    background-color: #e5be00;
+    border-radius: 5px;
+    height: 50%;
     font-weight: bold;
-    font-size: 60px;
+    user-select: none;
+    font-size: 40px;
     justify-content: center;
     align-content: center;
 }
@@ -23,7 +29,7 @@
     align-content: center;
     border-radius: 5px;
     font-weight: bold;
-    height: 40%;
+    height: 50%;
 }
 
 .newGame:hover {
@@ -31,7 +37,6 @@
 }
 
 .score {
-    flex: 1;
     display: flex;
     color: white;
     display: flex;
@@ -43,7 +48,7 @@
 
 .currentScore {
     height: 50%;
-    width: 100px;
+    flex: 1;
     background-color: #bbada0;
     border-radius: 5px;
     display: flex;
@@ -53,7 +58,7 @@
 
 .bestScore {
     height: 50%;
-    width: 100px;
+    flex: 1;
     background-color: #bbada0;
     border-radius: 5px;
     display: flex;
@@ -69,4 +74,5 @@
 .scorePoint {
     font-weight: bold;
     font-size: 20px;
+    color: white;
 }
