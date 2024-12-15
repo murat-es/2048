@@ -1,11 +1,26 @@
 .Info {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1rem;
     height: 20vh;
     width: 500px;
     margin: 0 auto;
+    margin-bottom: 1vw;
     align-items: center;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .Info {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .Info {
+        width: 90vw;
+    }
 }
 
 .appName {
@@ -15,8 +30,7 @@
     border-radius: 5px;
     height: 50%;
     font-weight: bold;
-    user-select: none;
-    font-size: 40px;
+    font-size: 20px;
     justify-content: center;
     align-content: center;
 }

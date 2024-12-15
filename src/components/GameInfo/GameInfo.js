@@ -20,7 +20,6 @@ const GameInfo = ({ score, setScore, bestScore, generateRandomTiles, setIsGameOv
     return (
             <div className="Info">
                     <div className="appName">2048</div>
-
                     <div className='currentScore'>
                         <div className='scoreText'>
                             SCORE

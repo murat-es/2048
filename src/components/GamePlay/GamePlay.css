@@ -13,6 +13,7 @@
     font-weight: bold;
     z-index: 10;
     pointer-events: none;
+    border-radius: 10px;
   }
 
 .gameBoard {
@@ -30,14 +31,27 @@
 
 @media (max-width: 768px) {
     .gameBoard {
-        width: 45vw;
-        height: 45vw;
+        width: 65vw;
+        height: 65vw;
         gap: 1vw;
     }
     .grid-item {
-        width: 10vw !important;
-        height: 10vw !important;
+        width: 15vw !important;
+        height: 15vw !important;
         font-size: 7vw !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .gameBoard {
+        width: 89vw;
+        height: 89vw;
+        gap: 2vw;
+    }
+    .grid-item {
+        width: 20vw !important;
+        height: 20vw !important;
+        font-size: 10vw !important;
     }
 }
 

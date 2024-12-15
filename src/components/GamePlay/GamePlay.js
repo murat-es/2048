@@ -430,10 +430,10 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
         </div>
       )}
       </div>
-      <button onClick={() => { moveLeft(board) }}>moveLeft</button>
+      {/* <button onClick={() => { moveLeft(board) }}>moveLeft</button>
       <button onClick={() => { moveRight(board) }}>moveRight</button>
       <button onClick={() => { moveUp(board) }}>moveUp</button>
-      <button onClick={() => { moveDown(board) }}>moveDown</button>
+      <button onClick={() => { moveDown(board) }}>moveDown</button> */}
     </div>
   )
 }
