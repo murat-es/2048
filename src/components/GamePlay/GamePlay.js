@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './GamePlay.css'
+import { useSwipeable } from 'react-swipeable';
 
 const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRandomTiles, isGameOver, newCellIndexList, playAnimation }) => {
 
@@ -327,6 +328,14 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
     didBoardMove && generateRandomTiles(board, randomCellCountOnEveryMove);
   }
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => moveLeft(board),
+    onSwipedRight: () => moveRight(board),
+    onSwipedUp: () => moveUp(board),
+    onSwipedDown: () => moveDown(board),
+    preventScrollOnSwipe: true,
+    trackTouch: true,
+  });
 
   const handleCellClass = (number, rowIndex, columnIndex) => {
     let classes = "grid-item"
@@ -399,8 +408,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
 
   return (
     <div>
-
-      <div className='gameBoard gameOver'>
+      <div {...handlers} className='gameBoard gameOver'>
         {board.map((number, row) => {
 
           return (
