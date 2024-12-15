@@ -7,7 +7,8 @@ function App() {
 
   const [isGameOver, setIsGameOver] = useState(false);
   const [newCellIndexList, setNewCellIndexList] = useState([{}]);
-  
+  const [playAnimation, setPlayAnimation] = useState(false);
+
   const getInitialBoard = () => {
     const storedBoard = localStorage.getItem("board");
     return storedBoard
@@ -96,7 +97,13 @@ function App() {
 
     setNewCellIndexList(newCellIndexList);
     setBoard(newBoard);
+    triggerAnimation()
   }
+
+  const triggerAnimation = () => {
+    setPlayAnimation(false); 
+    setTimeout(() => setPlayAnimation(true), 0);
+  };
 
   const checkIsGameOver = (board) => {
     const boardLength = board.length;
@@ -118,7 +125,7 @@ function App() {
     <div className="App" >
       <div className="gameContainer">
         <GameInfo score={score} setScore={setScore} bestScore={bestScore} generateRandomTiles={generateRandomTiles} setIsGameOver={setIsGameOver}/>
-        <GamePlay board={board} score={score} setScore={setScore} bestScore={bestScore} setBestScore={setBestScore} 
+        <GamePlay board={board} score={score} setScore={setScore} bestScore={bestScore} setBestScore={setBestScore} playAnimation={playAnimation }
                   generateRandomTiles={generateRandomTiles} isGameOver={isGameOver} newCellIndexList={newCellIndexList} />
       </div>
     </div>

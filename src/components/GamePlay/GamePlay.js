@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './GamePlay.css'
 
-const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRandomTiles, isGameOver, newCellIndexList }) => {
+const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRandomTiles, isGameOver, newCellIndexList, playAnimation }) => {
 
   const randomCellCountOnEveryMove = 1;
 
@@ -331,10 +331,11 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   const handleCellClass = (number, rowIndex, columnIndex) => {
     let classes = "grid-item"
 
-    for (let newCell = 0; newCell < newCellIndexList.length; newCell++) {
-
-      if(newCellIndexList[newCell].i === rowIndex && newCellIndexList[newCell].j === columnIndex) {
-        classes += " newCell"
+    if(playAnimation) {
+      for (let newCell = 0; newCell < newCellIndexList.length; newCell++) {  
+        if(newCellIndexList[newCell].i === rowIndex && newCellIndexList[newCell].j === columnIndex) {
+          classes += " newCell"
+        }
       }
     }
     
