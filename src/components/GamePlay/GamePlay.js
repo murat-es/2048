@@ -338,7 +338,7 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
   });
 
   const handleCellClass = (number, rowIndex, columnIndex) => {
-    let classes = "grid-item"
+    let classes = "cell"
 
     if(playAnimation) {
       for (let newCell = 0; newCell < newCellIndexList.length; newCell++) {  
@@ -346,6 +346,13 @@ const GamePlay = ({ board, score, setScore, bestScore, setBestScore, generateRan
           classes += " newCell"
         }
       }
+    }
+
+    if(number.toString().length === 4) {
+      classes += " cellWith4digits"
+    }
+    if(number.toString().length === 5) {
+      classes += " cellWith5digits"
     }
     
     if (number === "") {
